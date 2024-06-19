@@ -19,7 +19,9 @@ const Page : FC<Props> = ({ title, children }) => (
         py: 2,
       }}
     >
-      <Container maxWidth={false}>{children}</Container>
+      <Container maxWidth={false}>
+        {children}
+      </Container>
     </Box>
   </>
 )
