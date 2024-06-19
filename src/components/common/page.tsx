@@ -1,11 +1,13 @@
 import Head from 'next/head'
-import { Box, Container } from '@mui/material'
 import { FC, ReactNode } from 'react'
+import { Box, Container } from '@mui/material'
+
 
 interface Props {
   title: string
   children?: ReactNode
 }
+
 
 const Page : FC<Props> = ({ title, children }) => (
   <>
@@ -25,5 +27,6 @@ const Page : FC<Props> = ({ title, children }) => (
     </Box>
   </>
 )
+
 
 export default Page
