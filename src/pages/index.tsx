@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import Page from '@components/common/page'
+import Page from '@components/page'
 import IndexComponent from '@components/index'
 
 
