@@ -2,14 +2,10 @@ import Head from 'next/head'
 import { FC, ReactNode } from 'react'
 import { Box, Container } from '@mui/material'
 
-
-interface Props {
-  title: string
-  children?: ReactNode
-}
+import { PageProps } from '@common/interfaces'
 
 
-const Page : FC<Props> = ({ title, children }) => (
+const Page : FC<PageProps> = ({ title, children }) => (
   <>
     <Head>
       <title>{title}</title>

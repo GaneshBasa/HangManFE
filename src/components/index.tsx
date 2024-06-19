@@ -8,16 +8,7 @@ import {
 } from '@mui/material'
 
 import { be } from '@common/config'
-
-
-interface GameState {
-  id: number
-  game_state: string
-  word_state: string
-  guesses_incorrect: number
-  guesses_incorrect_remaining: number
-  guesses: string[]
-}
+import { GameState } from '@common/interfaces'
 
 
 const defaultGameState: GameState = {
