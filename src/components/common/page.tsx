@@ -7,7 +7,7 @@ interface Props {
   children?: ReactNode
 }
 
-const Page: FC<Props> = ({ title, children }) => (
+const Page : FC<Props> = ({ title, children }) => (
   <>
     <Head>
       <title>{title}</title>
