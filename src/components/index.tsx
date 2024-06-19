@@ -1,11 +1,6 @@
 import { FC, useEffect, useState } from 'react'
 import axios from 'axios'
 import {
-  Box,
-  Card,
-  CardContent,
-  CardHeader,
-  Divider,
   Paper,
   Table,
   TableBody,
@@ -17,6 +12,9 @@ import {
 import { be } from '@common/config'
 import { GameState } from '@common/interfaces'
 import { CenteredTableCell } from '@components/common'
+
+
+const openGame = ( gameID: number ) => window.open( '/game/' + gameID, '_self' )
 
 
 const IndexComponent : FC = () => {
@@ -61,7 +59,7 @@ const IndexComponent : FC = () => {
 
           {
             games.map( game => (
-              <TableRow key={game.id}>
+              <TableRow key={ game.id } onClick={ _ => openGame( game.id ) }>
                 <CenteredTableCell> { game.id } </CenteredTableCell>
                 <CenteredTableCell> { game.game_state } </CenteredTableCell>
                 <CenteredTableCell> { game.word_state } </CenteredTableCell>

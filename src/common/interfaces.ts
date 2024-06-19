@@ -12,6 +12,11 @@ export interface CenteredTableCellProps extends PropsWithChildren {
 }
 
 
+export interface GameProps {
+  id: number
+}
+
+
 export interface GameState {
   id: number
   game_state: string
