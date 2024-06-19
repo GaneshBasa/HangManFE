@@ -4,7 +4,7 @@ export const name = 'HangMan'
 
 export const be = {
   root: be_root,
-  games_list: be_root + '/games',
+  games: be_root + '/games',
   game: be_root + '/game',
   new_game: be_root + '/game' + '/new',
   // new_game: game + '/new',

@@ -5,7 +5,7 @@ import { Box, Container } from '@mui/material'
 import { PageProps } from '@common/interfaces'
 
 
-const Page : FC<PageProps> = ({ title, children }) => (
+const Page : FC<PageProps> = ({ title = 'HangMan', children }) => (
   <>
     <Head>
       <title>{title}</title>

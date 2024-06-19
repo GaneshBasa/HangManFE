@@ -1,9 +1,14 @@
-import { ReactNode } from 'react'
+import { PropsWithChildren } from 'react'
 
 
-export interface PageProps {
+export interface PageProps extends PropsWithChildren {
   title: string
-  children?: ReactNode
+}
+
+
+export interface CenteredTableCellProps extends PropsWithChildren {
+  rowSpan?: number
+  colSpan?: number
 }
 
 
