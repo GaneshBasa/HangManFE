@@ -53,7 +53,11 @@ const IndexComponent : FC = () => {
             <CenteredTableCell rowSpan={ 2 }> ID </CenteredTableCell>
             <CenteredTableCell colSpan={ 2 }> State </CenteredTableCell>
             <CenteredTableCell colSpan={ 2 }> Guesses </CenteredTableCell>
-            <CenteredTableCell> Action </CenteredTableCell>
+            <CenteredTableCell rowSpan={ 2 }>
+              <button className={ 'guess-letter neumorph disabled' } onClick={ newGame }>
+                New Game
+              </button>
+            </CenteredTableCell>
             </TableRow>
 
           <TableRow>
@@ -61,11 +65,6 @@ const IndexComponent : FC = () => {
             <CenteredTableCell> Word </CenteredTableCell>
             <CenteredTableCell> Incorrect </CenteredTableCell>
             <CenteredTableCell> Remaining </CenteredTableCell>
-            <CenteredTableCell>
-              <button className={ 'guess-letter neumorph disabled' } onClick={ newGame }>
-                New Game
-              </button>
-            </CenteredTableCell>
           </TableRow>
 
         </TableHead>
