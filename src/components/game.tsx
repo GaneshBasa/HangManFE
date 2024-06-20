@@ -8,21 +8,8 @@ import {
   Divider
 } from '@mui/material'
 
-import { be } from '@common/config'
+import { be, defaultGameState, isLetter } from '@common/config'
 import { GameState, GameProps } from '@common/interfaces'
-
-
-const defaultGameState: GameState = {
-  id: 0,
-  game_state: '',
-  word_state: '',
-  guesses_incorrect: 0,
-  guesses_incorrect_remaining: 0,
-  guesses: []
-}
-
-
-const isLetter = ( eventCode: string ) => eventCode.startsWith( 'Key' )
 
 
 const GameComponent : FC<GameProps> = ({ id = 0 }) => {
