@@ -65,7 +65,18 @@ const GameComponent : FC<GameProps> = ({ id = 0 }) => {
       />
       <Divider />
       <CardContent>
+        {/* FIGURE */}
+        
+        {/* WORD */}
         { game.word_state.split( '' ).join( ' ' ) }
+        
+        {/* KEYS / KEYBOARD */}
+        
+        {/* GUESSES - REMAINING ( COUNT ) */}
+        
+        {/* GUESSES - INCORRECT ( COUNT ) */}
+
+        {/* GUESSES - INCORRECT ( LETTERS ) */}
       </CardContent>
     </Card>
   )
