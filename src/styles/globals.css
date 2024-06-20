@@ -1,0 +1,127 @@
+:root {
+  --text-color: #b4bfce;
+  --gradient-start-color: #bd4a8e;
+  --gradient-end-color: #e95c7c;
+  --background: #222;
+  --highlight: rgb(53, 52, 52);
+  --shadow: rgb(19, 19, 19);
+  --neumorph-shadow: 4px 4px 8px var(--shadow), -4px -4px 8px var(--highlight),
+    -2px -2px 4px var(--highlight);
+
+  --neumorph-shadow-inset: inset 4px 4px 8px var(--shadow),
+    inset -4px -4px 8px var(--highlight), inset -4px -4px 4px var(--shadow),
+    inset -2px -2px 2px var(--highlight), -2px -2px 6px var(--highlight),
+    -2px -2px 8px var(--shadow), 2px 2px 2px var(--highlight),
+    4px 4px 8px var(--shadow);
+  --neumorph-hover-bg: rgb(41, 40, 40);
+
+  --error-color: #f94144;
+  --success-color: #2a9d8f;
+  --link-active-color: #4299e1;
+  --gradient: linear-gradient(
+    0,
+    var(--gradient-start-color),
+    var(--gradient-end-color)
+  );
+}
+
+.app {
+  min-height: 100vh;
+}
+
+body,
+* {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Poppins", "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--background);
+  color: var(--text-color);
+}
+
+a:visited,
+a:active {
+  color: var(--link-active-color) !important;
+}
+
+input,
+select {
+  padding: 0.8rem;
+  color: var(--text-color);
+  font-weight: bold;
+  width: 13rem;
+  outline: 0;
+}
+
+.neumorph {
+  background: transparent;
+  color: var(--text-color);
+  border: none;
+  border-radius: 12px;
+  box-shadow: var(--neumorph-shadow);
+  transition: color background-color box-shadow 100ms ease-in;
+}
+
+.neumorph.disabled {
+  color: var(--link-active-color);
+}
+.neumorph.invert {
+  box-shadow: var(--neumorph-shadow-inset);
+}
+
+.neumorph:not(.disabled):hover {
+  background: var(--neumorph-hover-bg);
+}
+
+.neumorph:not(.disabled):active {
+  box-shadow: var(--neumorph-shadow-inset);
+}
+
+.neumorph.invert:not(.disabled):active {
+  box-shadow: var(--neumorph-shadow);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 60vw;
+  margin: 0 auto;
+}
+
+.guess-word {
+  margin: 2rem 0;
+}
+
+.guess-letter {
+  padding: 0.5rem 1rem;
+  margin: 0 0.2rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.keyboard-button {
+  font-size: 2.5rem;
+  cursor: pointer;
+  min-width: 5rem;
+  padding: 0 1rem;
+  height: 5rem;
+  margin: 10px;
+  outline: none;
+}
+
+.result {
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.result.error {
+  color: var(--error-color) !important;
+}
+
+.result.success {
+  color: var(--success-color) !important;
+}
