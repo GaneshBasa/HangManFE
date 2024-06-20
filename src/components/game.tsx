@@ -38,7 +38,7 @@ const GameComponent : FC<GameProps> = ({ id = 0 }) => {
 
   const handleKeyClick = ( event: PointerEvent ) => {
     if ( game.guesses_incorrect_remaining > 0 ) {
-      handleLetter( event?.target?.value?.toUpperCase() )
+      handleLetter( ( event?.target as HTMLInputElement )?.value?.toUpperCase() )
     }
   }
 
