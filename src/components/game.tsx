@@ -1,30 +1,46 @@
-import { FC, useEffect, useState } from 'react'
+import { FC, PointerEvent, useEffect, useState } from 'react'
 import axios from 'axios'
 import {
   Button,
   Card,
   CardContent,
   CardHeader,
-  Divider
+  Divider,
+  Typography
 } from '@mui/material'
 
 import { be, defaultGameState, isLetter } from '@common/config'
 import { GameState, GameProps } from '@common/interfaces'
+import GuessWord from '@components/word'
+import KeyBoard from '@components/keyboard'
+import Result from './result'
 
 
 const GameComponent : FC<GameProps> = ({ id = 0 }) => {
   const [ game, setGame ] = useState<GameState>( defaultGameState )
+
+
+  const handleLetter = ( letter: string ) => {
+    // console.log( letter )
+
+    axios.post( be.game + '/' + id + '/guess', { 'letter': letter } )
+    .then( res => {
+      if ( res.statusText == 'OK' ) setGame( res.data.state )
+    } )
+    .catch( console.error )
+  }
   
 
-  const handleKeyDown = ( event: KeyboardEvent ) => {
+  const handleKeyPress = ( event: KeyboardEvent ) => {
     if ( game.guesses_incorrect_remaining > 0 && isLetter( event.code ) ) {
-      const letter = event.key.toUpperCase()
-  
-      axios.post( be.game + '/' + id + '/guess', { 'letter': letter } )
-      .then( res => {
-        if ( res.statusText == 'OK' ) setGame( res.data.state )
-      } )
-      .catch( console.error )
+      handleLetter( event.key.toUpperCase() )
+    }
+  }
+
+
+  const handleKeyClick = ( event: PointerEvent ) => {
+    if ( game.guesses_incorrect_remaining > 0 ) {
+      handleLetter( event?.target?.value?.toUpperCase() )
     }
   }
 
@@ -45,7 +61,7 @@ const GameComponent : FC<GameProps> = ({ id = 0 }) => {
   useEffect( () => {
     if ( game.id > 0 ) {
       if ( game.game_state == 'InProgress' ) {
-        if ( window.onkeydown == null ) window.onkeydown = handleKeyDown
+        if ( window.onkeydown == null ) window.onkeydown = handleKeyPress
       } else {
         if ( window.onkeydown != null ) window.onkeydown = null
       }
@@ -56,7 +72,8 @@ const GameComponent : FC<GameProps> = ({ id = 0 }) => {
   return (
     <Card>
       <CardHeader
-        title={ `Game ${ game.id } - ${ game.game_state }` }
+        title='Guess The Word'
+        subheader='( You Can Also Use The KeyBoard )'
         action={
           <Button variant='outlined' color='info' href='/'>
             Games List
@@ -64,19 +81,35 @@ const GameComponent : FC<GameProps> = ({ id = 0 }) => {
         }
       />
       <Divider />
-      <CardContent>
-        {/* FIGURE */}
-        
+      <CardContent sx={{ textAlign: 'center' }}>
         {/* WORD */}
-        { game.word_state.split( '' ).join( ' ' ) }
-        
-        {/* KEYS / KEYBOARD */}
-        
-        {/* GUESSES - REMAINING ( COUNT ) */}
-        
-        {/* GUESSES - INCORRECT ( COUNT ) */}
+        <GuessWord word={ game.word_state } />
 
-        {/* GUESSES - INCORRECT ( LETTERS ) */}
+        {/* RESULT */}
+        <Result state={ game.game_state } />
+        
+        {/* KEYBOARD */}
+        <KeyBoard clicked={ game.guesses } handler={ handleKeyClick } />
+        
+        {/* STATISTICS */}
+        {/*
+        <>
+          GUESSES - REMAINING ( COUNT )
+          <Typography>
+            Guesses - Remaining ( Count ) : { game.guesses_incorrect_remaining }
+          </Typography>
+          
+          GUESSES - INCORRECT ( COUNT )
+          <Typography>
+            Guesses - InCorrect ( Count ) : { game.guesses_incorrect }
+          </Typography>
+
+          GUESSES - INCORRECT ( LETTERS )
+          <Typography>
+            Guesses - InCorrect ( Letters ) : [ { game.guesses.filter( guess => !game.word_state.includes( guess ) ).join( ', ' ) } ]
+          </Typography>
+        </>
+        */}
       </CardContent>
     </Card>
   )
