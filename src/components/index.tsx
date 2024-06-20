@@ -1,6 +1,7 @@
 import { FC, useEffect, useState } from 'react'
 import axios from 'axios'
 import {
+  Button,
   Paper,
   Table,
   TableBody,
@@ -44,7 +45,8 @@ const IndexComponent : FC = () => {
             <CenteredTableCell rowSpan={ 2 }> ID </CenteredTableCell>
             <CenteredTableCell colSpan={ 2 }> State </CenteredTableCell>
             <CenteredTableCell colSpan={ 2 }> Guesses </CenteredTableCell>
-          </TableRow>
+            <CenteredTableCell rowSpan={ 2 }> Action </CenteredTableCell>
+            </TableRow>
 
           <TableRow>
             <CenteredTableCell> Game </CenteredTableCell>
@@ -59,12 +61,17 @@ const IndexComponent : FC = () => {
 
           {
             games.map( game => (
-              <TableRow key={ game.id } onClick={ _ => openGame( game.id ) }>
+              <TableRow key={ game.id }>
                 <CenteredTableCell> { game.id } </CenteredTableCell>
                 <CenteredTableCell> { game.game_state } </CenteredTableCell>
                 <CenteredTableCell> { game.word_state } </CenteredTableCell>
-                <CenteredTableCell> { game.guesses_incorrect_remaining } </CenteredTableCell>
                 <CenteredTableCell> { game.guesses_incorrect } </CenteredTableCell>
+                <CenteredTableCell> { game.guesses_incorrect_remaining } </CenteredTableCell>
+                <CenteredTableCell>
+                  <Button href={ '/game/' + game.id }>
+                    Open
+                  </Button>
+                </CenteredTableCell>
               </TableRow>
             ) )
           }
