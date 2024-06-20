@@ -1,12 +1,10 @@
 import { FC, PointerEvent, useEffect, useState } from 'react'
 import axios from 'axios'
 import {
-  Button,
   Card,
   CardContent,
   CardHeader,
-  Divider,
-  Typography
+  Divider
 } from '@mui/material'
 
 import { be, defaultGameState, isLetter } from '@common/config'
@@ -75,9 +73,11 @@ const GameComponent : FC<GameProps> = ({ id = 0 }) => {
         title='Guess The Word'
         subheader='( You Can Also Use The KeyBoard )'
         action={
-          <Button variant='outlined' color='info' href='/'>
-            Games List
-          </Button>
+          <a href='/'>
+            <button className={ 'guess-letter neumorph' }>
+                Home
+            </button>
+          </a>
         }
       />
       <Divider />

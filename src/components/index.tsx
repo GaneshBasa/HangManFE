@@ -1,7 +1,6 @@
 import { FC, useEffect, useState } from 'react'
 import axios from 'axios'
 import {
-  Button,
   Paper,
   Table,
   TableBody,
@@ -63,9 +62,9 @@ const IndexComponent : FC = () => {
             <CenteredTableCell> Incorrect </CenteredTableCell>
             <CenteredTableCell> Remaining </CenteredTableCell>
             <CenteredTableCell>
-              <Button variant='outlined' color='warning' onClick={ newGame }>
+              <button className={ 'guess-letter neumorph disabled' } onClick={ newGame }>
                 New Game
-              </Button>
+              </button>
             </CenteredTableCell>
           </TableRow>
 
@@ -82,9 +81,11 @@ const IndexComponent : FC = () => {
                 <CenteredTableCell> { game.guesses_incorrect } </CenteredTableCell>
                 <CenteredTableCell> { game.guesses_incorrect_remaining } </CenteredTableCell>
                 <CenteredTableCell>
-                  <Button variant='outlined' color='info' href={ '/game/' + game.id }>
-                    Load Game
-                  </Button>
+                  <a href={ '/game/' + game.id }>
+                    <button className={ 'guess-letter neumorph' }>
+                      Load
+                    </button>
+                  </a>
                 </CenteredTableCell>
               </TableRow>
             ) )
