@@ -15,7 +15,16 @@ import { GameState } from '@common/interfaces'
 import { CenteredTableCell } from '@components/common'
 
 
-const openGame = ( gameID: number ) => window.open( '/game/' + gameID, '_self' )
+const newGame = () => {
+  axios.get( be.new_game )
+  .then( res => {
+    if ( res.statusText == 'Created' ) {
+      window.open( '/game/' + res.data.id, '_self' )
+    }
+  } )
+  .catch( console.error )
+
+}
 
 
 const IndexComponent : FC = () => {
@@ -45,7 +54,7 @@ const IndexComponent : FC = () => {
             <CenteredTableCell rowSpan={ 2 }> ID </CenteredTableCell>
             <CenteredTableCell colSpan={ 2 }> State </CenteredTableCell>
             <CenteredTableCell colSpan={ 2 }> Guesses </CenteredTableCell>
-            <CenteredTableCell rowSpan={ 2 }> Action </CenteredTableCell>
+            <CenteredTableCell> Action </CenteredTableCell>
             </TableRow>
 
           <TableRow>
@@ -53,6 +62,11 @@ const IndexComponent : FC = () => {
             <CenteredTableCell> Word </CenteredTableCell>
             <CenteredTableCell> Incorrect </CenteredTableCell>
             <CenteredTableCell> Remaining </CenteredTableCell>
+            <CenteredTableCell>
+              <Button variant='outlined' color='warning' onClick={ newGame }>
+                New Game
+              </Button>
+            </CenteredTableCell>
           </TableRow>
 
         </TableHead>
@@ -64,12 +78,12 @@ const IndexComponent : FC = () => {
               <TableRow key={ game.id }>
                 <CenteredTableCell> { game.id } </CenteredTableCell>
                 <CenteredTableCell> { game.game_state } </CenteredTableCell>
-                <CenteredTableCell> { game.word_state } </CenteredTableCell>
+                <CenteredTableCell> { game.word_state.split( '' ).join( ' ' ) } </CenteredTableCell>
                 <CenteredTableCell> { game.guesses_incorrect } </CenteredTableCell>
                 <CenteredTableCell> { game.guesses_incorrect_remaining } </CenteredTableCell>
                 <CenteredTableCell>
-                  <Button href={ '/game/' + game.id }>
-                    Open
+                  <Button variant='outlined' color='info' href={ '/game/' + game.id }>
+                    Load Game
                   </Button>
                 </CenteredTableCell>
               </TableRow>

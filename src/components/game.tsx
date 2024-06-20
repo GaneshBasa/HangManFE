@@ -1,6 +1,7 @@
 import { FC, useEffect, useState } from 'react'
 import axios from 'axios'
 import {
+  Button,
   Card,
   CardContent,
   CardHeader,
@@ -67,7 +68,14 @@ const GameComponent : FC<GameProps> = ({ id = 0 }) => {
 
   return (
     <Card>
-      <CardHeader title={ `Game ${ game.id } - ${ game.game_state }` } />
+      <CardHeader
+        title={ `Game ${ game.id } - ${ game.game_state }` }
+        action={
+          <Button variant='outlined' color='info' href='/'>
+            Games List
+          </Button>
+        }
+      />
       <Divider />
       <CardContent>
         { game.word_state.split( '' ).join( ' ' ) }
